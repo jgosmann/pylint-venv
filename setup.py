@@ -8,12 +8,12 @@ with open('README.rst') as f:
 
 setup(
     name='pylint-venv',
-    version='1.0',
+    version='1.1.0',
     description='pylint-venv provides a Pylint init-hook to use the same '
     'Pylint installation with different virtual environments.',
     long_description=long_description,
-    author='Jan Gosmann',
-    author_email='jan@hyper-world.de',
+    author='Jan Gosmann, Federico Jaramillo',
+    author_email='jan@hyper-world.de, federicojaramillom@gmail.com',
     url='https://github.com/jgosmann/pylint-venv/',
     py_modules=['pylint_venv'],
     provides=['pylint_venv'],
