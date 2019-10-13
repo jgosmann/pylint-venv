@@ -11,9 +11,9 @@ import sys
 
 def is_venv():
     """Return true if a virtual environment is active."""
-    return getattr(sys, "base_prefix", sys.prefix) != sys.prefix or hasattr(
-        sys, "real_prefix"
-    )
+    is_conda_env = getattr(sys, "base_prefix", sys.prefix) != sys.prefix
+    is_virtualenv = hasattr(sys, "real_prefix")
+    return is_conda_env or is_virtualenv
 
 
 def activate_venv(active_site, venv=None):
@@ -59,5 +59,8 @@ def activate_venv(active_site, venv=None):
 
 def inithook(venv=None):
     """Activate a Virtual Environment if one is not active."""
-    if not is_venv():
-        activate_venv(site, venv)
+    if is_venv():
+        # pylint was invoked from within a venv.  Nothing to do.
+        return
+
+    activate_venv(site, venv)
