@@ -16,7 +16,7 @@ def is_venv():
     return is_conda_env or is_virtualenv
 
 
-def activate_venv(active_site, venv=None):
+def activate_venv(venv=None):
     """
     Search and activate a Virtual Environment.
 
@@ -48,11 +48,11 @@ def activate_venv(active_site, venv=None):
             )
 
         prev = set(sys.path)
-        active_site.addsitedir(site_packages)
+        site.addsitedir(site_packages)
         sys.real_prefix = sys.prefix
         sys.prefix = base
 
-        # Move the added items to the front of the path, in place
+        # Move the added items to the front of sys.path (in place!)
         new = list(sys.path)
         sys.path[:] = [i for i in new if i not in prev] + [i for i in new if i in prev]
 
@@ -63,4 +63,4 @@ def inithook(venv=None):
         # pylint was invoked from within a venv.  Nothing to do.
         return
 
-    activate_venv(site, venv)
+    activate_venv(venv)
