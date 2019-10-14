@@ -8,7 +8,7 @@ with open('README.rst') as f:
 
 setup(
     name='pylint-venv',
-    version='1.1.0',
+    version='1.2.0',
     description='pylint-venv provides a Pylint init-hook to use the same '
     'Pylint installation with different virtual environments.',
     long_description=long_description,
@@ -24,6 +24,11 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development',
     ]
 )
