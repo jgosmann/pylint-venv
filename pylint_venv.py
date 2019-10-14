@@ -1,7 +1,19 @@
 """
-Activate a virtual environment from Python.
+Allow a globally installed Pylint to lint an (active) virtual or Conda
+environment.
+
+If a globally installed Pylint is invoked from an active virtualenv or Conda
+environment, add the environment's paths to Pylint.
+
+If no virtualenv is active but the CWD contains a virtualenv in a  ``.venv``
+folder, activate that env and add its paths to Pylint.
+
+Do nothing if no virtualenv is active or if Pylint is installed within the
+active virtualenv.
+
 
 Activation logic taken from https://github.com/pypa/virtualenv
+
 """
 
 import os
@@ -10,20 +22,24 @@ import sys
 
 
 def is_venv():
-    """Return true if a virtual environment is active."""
+    """Return ``true`` if a virtual environment is active and Pylint is
+    installed in it.
+
+    """
     is_conda_env = getattr(sys, "base_prefix", sys.prefix) != sys.prefix
     is_virtualenv = hasattr(sys, "real_prefix")
     return is_conda_env or is_virtualenv
 
 
 def activate_venv(venv=None):
-    """
-    Search and activate a Virtual Environment.
+    """Check for an active venv and add its paths to Pylint.
 
     Activate the virtual environment from:
-    - The `venv` param, if one is given.
-    - `VIRTUAL_ENV` environmental variable if set.
-    - a `.venv` folder in the current working directory
+
+    - The *venv* param if one is given.
+    - ``VIRTUAL_ENV`` environmental variable if set.
+    - A ``.venv`` folder in the current working directory
+
     """
     if venv is None:
         venv = os.environ.get("VIRTUAL_ENV", None)
@@ -58,7 +74,11 @@ def activate_venv(venv=None):
 
 
 def inithook(venv=None):
-    """Activate a Virtual Environment if one is not active."""
+    """Add a virtualenv's paths to Pylint.
+
+    Use the environment *env* if set or auto-detect an active virtualenv.
+
+    """
     if is_venv():
         # pylint was invoked from within a venv.  Nothing to do.
         return
