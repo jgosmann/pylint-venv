@@ -22,13 +22,26 @@ Add the following to your ``~/.pylintrc``:
         except ImportError: pass
         else: pylint_venv.inithook()
 
+The hook will then be used automatically if
 
-You can also call the hook via a command line argument.  This way you can also
-pass an explicit env. to use:
+- a virtualenv is activated
+
+- a Conda environment is activated
+
+- no env is activated but your CWD contains a virtualenv in ``.venv``
+
+and if pylint is not installed in that env, too.
+
+You can also call the hook via a command line argument:
 
 .. code:: console
 
     $ pylint --init-hook="import pylint_venv; pylint_venv.inithook()"
+
+This way you can also explicitly set an environment to be used:
+
+.. code:: console
+
     $ pylint --init-hook="import pylint_venv; pylint_venv.inithook('$(pwd)/env')"
 
 .. _Pylint: http://www.pylint.org/
