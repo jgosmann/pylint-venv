@@ -1,17 +1,14 @@
-#!/usr/bin/env python
+from setuptools import setup
 
-from distutils.core import setup
-
-
-with open('README.rst') as f:
-    long_description = f.read()
 
 setup(
     name='pylint-venv',
     version='1.2.0',
-    description='pylint-venv provides a Pylint init-hook to use the same '
-    'Pylint installation with different virtual environments.',
-    long_description=long_description,
+    description=(
+        'pylint-venv provides a Pylint init-hook to use the same Pylint '
+        'installation with different virtual environments.'
+    ),
+    long_description=open('README.rst').read(),
     author='Jan Gosmann, Federico Jaramillo',
     author_email='jan@hyper-world.de, federicojaramillom@gmail.com',
     url='https://github.com/jgosmann/pylint-venv/',
@@ -30,5 +27,5 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development',
-    ]
+    ],
 )

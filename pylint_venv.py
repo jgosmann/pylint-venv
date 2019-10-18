@@ -79,12 +79,11 @@ def activate_venv(venv):
     """
     if IS_PYPY:
         site_packages = os.path.join(venv, "site-packages")
+    elif IS_WIN:
+        site_packages = os.path.join(venv, "Lib", "site-packages")
     else:
-        if IS_WIN:
-            site_packages = os.path.join(venv, "Lib", "site-packages")
-        else:
-            pyver = f"{sys.version_info[0]}.{sys.version_info[1]}"
-            site_packages = os.path.join(venv, "lib", f"python{pyver}", "site-packages")
+        pyver = f"python{sys.version_info[0]}.{sys.version_info[1]}"
+        site_packages = os.path.join(venv, "lib", pyver, "site-packages")
 
     prev = set(sys.path)
     site.addsitedir(site_packages)
@@ -93,7 +92,9 @@ def activate_venv(venv):
 
     # Move the added items to the front of sys.path (in place!)
     new = list(sys.path)
-    sys.path[:] = [i for i in new if i not in prev] + [i for i in new if i in prev]
+    new_paths = [i for i in new if i not in prev]
+    kept_paths = [i for i in new if i in prev]
+    sys.path[:] = new_paths + kept_paths
 
 
 def inithook(venv=None):
