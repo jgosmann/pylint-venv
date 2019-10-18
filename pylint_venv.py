@@ -113,5 +113,5 @@ def inithook(venv=None):
     if venv is None:
         return
 
-    print(f"\033[1;33mUsing env: {venv}\033[0m", file=sys.stderr)
+    print(f"Using env: {venv}", file=sys.stderr)
     activate_venv(venv)
