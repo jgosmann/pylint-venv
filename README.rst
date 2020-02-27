@@ -44,5 +44,14 @@ This way you can also explicitly set an environment to be used:
 
     $ pylint --init-hook="import pylint_venv; pylint_venv.inithook('$(pwd)/env')"
 
+If ``pylint`` itself is installed in a different virtualenv than the one you're calling it from then you can ignore it by passing ``ignore_pylint_venv=True`` as follows:
+
+.. code:: console
+
+    $ pylint --init-hook="import pylint_venv; pylint_venv.inithook(ignore_pylint_venv=True)"
+
+
+This will try to automatically detect virtualenv and activate it.
+
 .. _Pylint: http://www.pylint.org/
 .. _virtualenv: https://virtualenv.pypa.io/en/latest/
