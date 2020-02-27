@@ -46,17 +46,14 @@ IS_PYPY = platform.python_implementation() == "PyPy"
 
 
 def is_venv():
-    """Return ``true`` if a virtual environment is active and Pylint is
-    installed in it.
-
-    """
+    """Return *True* if a virtual environment is currently active."""
     is_conda_env = getattr(sys, "base_prefix", sys.prefix) != sys.prefix
     is_virtualenv = hasattr(sys, "real_prefix")
     return is_conda_env or is_virtualenv
 
 
 def detect_venv():
-    # Check for a virtualenv or Conda env
+    """Check for a virtualenv or Conda env"""
     for var in ["VIRTUAL_ENV", "CONDA_PREFIX"]:
         venv = os.getenv(var, "")
         if venv:
@@ -72,15 +69,7 @@ def detect_venv():
 
 
 def activate_venv(venv):
-    """Check for an active venv and add its paths to Pylint.
-
-    Activate the virtual environment from:
-
-    - The *venv* param if one is given.
-    - ``VIRTUAL_ENV`` environmental variable if set.
-    - A ``.venv`` folder in the current working directory
-
-    """
+    """Activate the virtual environment with prefix *venv*"""
     if IS_PYPY:
         site_packages = os.path.join(venv, "site-packages")
     elif IS_WIN:
