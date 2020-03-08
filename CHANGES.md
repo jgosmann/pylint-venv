@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.0] - 2020-03-04
 ### Added
-- Support for using pylint installed in a virtual environment. See `ignore_pylint_venv`
+- Support for using pylint installed in a virtual environment.
+See `force_venv_activation` parameter on `inithook` method.
 
 ## [2.0.0] - 2019-10-19
 ### Added
