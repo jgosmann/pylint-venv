@@ -29,9 +29,10 @@ Usage:
 
     pylint --init-hook="import pylint_venv; pylint_venv.inithook('$(pwd)/env')"
 
-- If Pylint itself is installed in a different virtualenv, to ignore that virtualenv::
+- If Pylint itself is installed in a virtualenv, then you can ignore it by passing
+``force_venv_activation=True`` to force activation of a different virtualenv::
 
-    pylint --init--hook="import pylint_venv; pylint_venv.inithoo(ignore_pylint_venv=True)"
+    pylint --init--hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"
 
 """
 
@@ -90,13 +91,13 @@ def activate_venv(venv):
     sys.path[:] = new_paths + kept_paths
 
 
-def inithook(venv=None, ignore_pylint_venv=False):
+def inithook(venv=None, force_venv_activation=False):
     """Add virtualenv's paths and site_packages to Pylint.
 
     Use environment with prefix *venv* if provided else try to auto-detect an active virtualenv.
-    Pass *ignore_pylint_venv=True* if Pylint itself is installed in a different virtualenv.
+    Pass *force_venv_activation=True* if Pylint itself is installed in a different virtualenv.
     """
-    if not ignore_pylint_venv and is_venv():
+    if not force_venv_activation and is_venv():
         # pylint was invoked from within a venv.  Nothing to do.
         return
 
