@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.1.0] - 2020-03-04
+## [2.1.0] - 2020-03-22
 ### Added
 - Support for using pylint installed in a virtual environment.
 See `force_venv_activation` parameter on `inithook` method.
@@ -32,6 +32,7 @@ See `force_venv_activation` parameter on `inithook` method.
 
 
 [Unreleased]: https://github.com/jgosmann/pylint-venv/compare/v2.0.0...HEAD
+[2.1.0]: https://github.com/jgosmann/pylint-venv/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/jgosmann/pylint-venv/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/jgosmann/pylint-venv/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/jgosmann/pylint-venv/releases/tag/v1.0.0
