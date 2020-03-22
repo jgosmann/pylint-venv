@@ -29,6 +29,11 @@ Usage:
 
     pylint --init-hook="import pylint_venv; pylint_venv.inithook('$(pwd)/env')"
 
+- If Pylint itself is installed in a virtualenv, then you can ignore it by passing
+``force_venv_activation=True`` to force activation of a different virtualenv::
+
+    pylint --init--hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"
+
 """
 
 import os
@@ -42,17 +47,14 @@ IS_PYPY = platform.python_implementation() == "PyPy"
 
 
 def is_venv():
-    """Return ``true`` if a virtual environment is active and Pylint is
-    installed in it.
-
-    """
+    """Return *True* if a virtual environment is currently active."""
     is_conda_env = getattr(sys, "base_prefix", sys.prefix) != sys.prefix
     is_virtualenv = hasattr(sys, "real_prefix")
     return is_conda_env or is_virtualenv
 
 
 def detect_venv():
-    # Check for a virtualenv or Conda env
+    """Check for a virtualenv or Conda env"""
     for var in ["VIRTUAL_ENV", "CONDA_PREFIX"]:
         venv = os.getenv(var, "")
         if venv:
@@ -68,15 +70,7 @@ def detect_venv():
 
 
 def activate_venv(venv):
-    """Check for an active venv and add its paths to Pylint.
-
-    Activate the virtual environment from:
-
-    - The *venv* param if one is given.
-    - ``VIRTUAL_ENV`` environmental variable if set.
-    - A ``.venv`` folder in the current working directory
-
-    """
+    """Activate the virtual environment with prefix *venv*"""
     if IS_PYPY:
         site_packages = os.path.join(venv, "site-packages")
     elif IS_WIN:
@@ -97,13 +91,13 @@ def activate_venv(venv):
     sys.path[:] = new_paths + kept_paths
 
 
-def inithook(venv=None):
-    """Add a virtualenv's paths to Pylint.
+def inithook(venv=None, force_venv_activation=False):
+    """Add virtualenv's paths and site_packages to Pylint.
 
-    Use the environment *env* if set or auto-detect an active virtualenv.
-
+    Use environment with prefix *venv* if provided else try to auto-detect an active virtualenv.
+    Pass *force_venv_activation=True* if Pylint itself is installed in a different virtualenv.
     """
-    if is_venv():
+    if not force_venv_activation and is_venv():
         # pylint was invoked from within a venv.  Nothing to do.
         return
 

@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='pylint-venv',
-    version='2.0.0',
+    version='2.1.0',
     description=(
         'pylint-venv provides a Pylint init-hook to use the same Pylint '
         'installation with different virtual environments.'
