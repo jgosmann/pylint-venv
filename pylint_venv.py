@@ -36,6 +36,7 @@ Usage:
 
 """
 
+import glob
 import os
 import platform
 import site
@@ -76,8 +77,11 @@ def activate_venv(venv):
     elif IS_WIN:
         site_packages = os.path.join(venv, "Lib", "site-packages")
     else:
-        pyver = f"python{sys.version_info[0]}.{sys.version_info[1]}"
-        site_packages = os.path.join(venv, "lib", pyver, "site-packages")
+        try:
+            site_packages = glob.glob(venv + "/lib/python*/site-packages")[0]
+        except IndexError:
+            pyver = f"python{sys.version_info[0]}.{sys.version_info[1]}"
+            site_packages = os.path.join(venv, "lib", pyver, "site-packages")
 
     prev = set(sys.path)
     site.addsitedir(site_packages)
