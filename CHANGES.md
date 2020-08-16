@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Activate virtual environment even if its Python version does not match the
+  Python version used by pylint. Note that Python packages in the virtual
+  environment incombatible with pylint's Python version will not work.
+
 ## [2.1.0] - 2020-03-22
 
 ### Added

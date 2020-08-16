@@ -38,12 +38,17 @@ Usage:
 
 import os
 import platform
+import re
 import site
 import sys
 
 
 IS_WIN = platform.system() == "Windows"
 IS_PYPY = platform.python_implementation() == "PyPy"
+
+
+class IncompatibleVenvError(Exception):
+    pass
 
 
 def is_venv():
@@ -76,8 +81,17 @@ def activate_venv(venv):
     elif IS_WIN:
         site_packages = os.path.join(venv, "Lib", "site-packages")
     else:
-        pyver = f"python{sys.version_info[0]}.{sys.version_info[1]}"
-        site_packages = os.path.join(venv, "lib", pyver, "site-packages")
+        lib_dir = os.path.join(venv, "lib")
+        python_dirs = [d for d in os.listdir(lib_dir) if re.match(r"python\d+.\d+", d)]
+        if len(python_dirs) == 0:
+            raise IncompatibleVenvError(
+                f"The virtual environment {venv!r} is missing a lib/pythonX.Y directory."
+            )
+        if len(python_dirs) > 1:
+            raise IncompatibleVenvError(
+                f"The virtual environment {venv!r} has multiple lib/pythonX.Y directories."
+            )
+        site_packages = os.path.join(lib_dir, python_dirs[0], "site-packages")
 
     prev = set(sys.path)
     site.addsitedir(site_packages)
