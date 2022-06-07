@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylint-venv"
-version = "2.1.1"
+version = "2.2.0"
 description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
 readme = "README.rst"
 authors = ["Jan Gosmann <jan@hyper-world.de>", "Federico Jaramillo <federicojaramillom@gmail.com>"]
