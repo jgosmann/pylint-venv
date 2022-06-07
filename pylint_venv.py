@@ -65,11 +65,14 @@ def detect_venv():
         if venv:
             return venv
 
-    # Check if a local ".venv" folder exists
+    # Check if a virtualenv directory exists (.venv by default, or alternative
+    # paths given by environment variable)
+    venv_paths = os.getenv("PYLINT_VENV_PATH", ".venv").split(":")
     cwd = os.getcwd()
     exec_path = "Scripts" if IS_WIN else "bin"
-    if os.path.isfile(os.path.join(cwd, ".venv", exec_path, "activate")):
-        return os.path.join(cwd, ".venv")
+    for venv_dir in venv_paths:
+        if os.path.isfile(os.path.join(cwd, venv_dir, exec_path, "activate")):
+            return os.path.join(cwd, venv_dir)
 
     return None
 

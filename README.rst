@@ -30,6 +30,13 @@ The hook will then be used automatically if
 
 - no env is activated but your CWD contains a virtualenv in ``.venv``
 
+  - it also reads the ``PYLINT_VENV_PATH`` environment variable for finding
+    alternative locations, e.g. for checking directories ``.venv`` and
+    ``.virtualenv``:
+      .. code:: console
+
+        PYLINT_VENV_PATH=.venv:.virtualenv
+
 and if pylint is not installed in that env, too.
 
 You can also call the hook via a command line argument:
