@@ -24,20 +24,20 @@ Add the following to your ``~/.pylintrc``:
 
 The hook will then be used automatically if
 
-- a virtualenv is activated
+- a virtualenv without pylint is active,
 
-- a Conda environment is activated
+- or a Conda environment without pylint is active,
 
-- no env is activated but your CWD contains a virtualenv in ``.venv``
+- or no environment is active but your CWD contains virtualenv directory.
 
-  - it also reads the ``PYLINT_VENV_PATH`` environment variable for finding
-    alternative locations, e.g. for checking directories ``.venv`` and
-    ``.virtualenv``:
-      .. code:: console
+Anything listed in the ``PYLINT_VENV_PATH`` environment variable is considered
+a virtualenv directory. The default, if the variable is unset, is `.venv`. Use
+a colon (`:`) as path separator. Example for checking directories ``.venv`` and
+``.virtualenv``:
 
-        PYLINT_VENV_PATH=.venv:.virtualenv
+.. code:: console
 
-and if pylint is not installed in that env, too.
+    PYLINT_VENV_PATH=.venv:.virtualenv
 
 You can also call the hook via a command line argument:
 
