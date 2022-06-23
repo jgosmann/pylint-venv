@@ -85,12 +85,12 @@ pylint_vent breaks parsing with tools
 """""""""""""""""""""""""""""""""""""
 
 When tools call pylint with :code:`-f json`, an extra line may break the parser, as the 
-output is no longer valid json. To avoid printing "using venv ...", pass :code:`silent=True`
+output is no longer valid json. To avoid printing "using venv ...", pass :code:`quiet=True`
 to :code:`inithook`
 
 .. code:: console
 
-   $ pylint -f json --init-hook="import pylint_venv; pylint_venv.inithook(silent=True)"
+   $ pylint -f json --init-hook="import pylint_venv; pylint_venv.inithook(quiet=True)"
 
 
 Virtual environment does not get used (installed modules are reported as 'unable to import')
