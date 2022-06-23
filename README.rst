@@ -86,7 +86,7 @@ pylint_vent breaks parsing with tools
 
 When tools call pylint with :code:`-f json`, an extra line may break the parser, as the 
 output is no longer valid json. To avoid printing "using venv ...", pass :code:`silent=True`
-to :code:`init_hook`
+to :code:`inithook`
 
 .. code:: console
 
