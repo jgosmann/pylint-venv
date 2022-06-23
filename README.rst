@@ -90,7 +90,7 @@ to :code:`inithook`
 
 .. code:: console
 
-   $ pylint -f json --init-hook="import pylint_venv; pylint_venv.inithook(silent=true)"
+   $ pylint -f json --init-hook="import pylint_venv; pylint_venv.inithook(silent=True)"
 
 
 Virtual environment does not get used (installed modules are reported as 'unable to import')
