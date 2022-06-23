@@ -84,8 +84,9 @@ as pylint, or add the appropriate path in the init hook:
 pylint_vent breaks parsing with tools
 """""""""""""""""""""""""""""""""""""
 
-When tools call pylint with -f json, an extra line may break the parser, as the output is 
-no longer valid json. To avoid printing "using venv ...", pass `silent=True` to `init_hook`
+When tools call pylint with :code:`-f json`, an extra line may break the parser, as the 
+output is no longer valid json. To avoid printing "using venv ...", pass :code:`silent=True`
+to :code:`init_hook`
 
 .. code:: console
 
@@ -97,8 +98,8 @@ Virtual environment does not get used (installed modules are reported as 'unable
 
 Most likely the virtual environment does not get activated because pylint itself
 runs in a virtual environment. You can force the activation of the virtual
-environment with the `force_venv_activation=True` flag to the
-`pylint_venv.inithook` function.
+environment with the :code:`force_venv_activation=True` flag to the
+:code:`pylint_venv.inithook` function.
 
 
 Homebrew
