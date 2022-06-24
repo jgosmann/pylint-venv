@@ -81,13 +81,25 @@ as pylint, or add the appropriate path in the init hook:
     sys.path.append("/path/to/installation/folder/of/pylint_venv")
 
 
+pylint_vent breaks parsing with tools
+"""""""""""""""""""""""""""""""""""""
+
+When tools call pylint with :code:`-f json`, an extra line may break the parser, as the 
+output is no longer valid json. To avoid printing "using venv ...", pass :code:`quiet=True`
+to :code:`inithook`
+
+.. code:: console
+
+   $ pylint -f json --init-hook="import pylint_venv; pylint_venv.inithook(quiet=True)"
+
+
 Virtual environment does not get used (installed modules are reported as 'unable to import')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Most likely the virtual environment does not get activated because pylint itself
 runs in a virtual environment. You can force the activation of the virtual
-environment with the `force_venv_activation=True` flag to the
-`pylint_venv.inithook` function.
+environment with the :code:`force_venv_activation=True` flag to the
+:code:`pylint_venv.inithook` function.
 
 
 Homebrew

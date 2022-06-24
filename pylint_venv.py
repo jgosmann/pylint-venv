@@ -108,7 +108,7 @@ def activate_venv(venv):
     sys.path[:] = new_paths + kept_paths
 
 
-def inithook(venv=None, force_venv_activation=False):
+def inithook(venv=None, force_venv_activation=False, quiet=False):
     """Add virtualenv's paths and site_packages to Pylint.
 
     Use environment with prefix *venv* if provided else try to auto-detect an active virtualenv.
@@ -124,5 +124,6 @@ def inithook(venv=None, force_venv_activation=False):
     if venv is None:
         return
 
-    print(f"Using env: {venv}", file=sys.stderr)
+    if not quiet:
+        print(f"Using env: {venv}", file=sys.stderr)
     activate_venv(venv)
