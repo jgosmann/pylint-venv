@@ -81,7 +81,7 @@ as pylint, or add the appropriate path in the init hook:
     sys.path.append("/path/to/installation/folder/of/pylint_venv")
 
 
-pylint_vent breaks parsing with tools
+pylint_venv breaks parsing with tools
 """""""""""""""""""""""""""""""""""""
 
 When tools call pylint with :code:`-f json`, an extra line may break the parser, as the 
