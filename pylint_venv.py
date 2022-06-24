@@ -113,6 +113,8 @@ def inithook(venv=None, force_venv_activation=False, *, quiet=False):
 
     Use environment with prefix *venv* if provided else try to auto-detect an active virtualenv.
     Pass *force_venv_activation=True* if Pylint itself is installed in a different virtualenv.
+
+    Passing in *quiet=True* suppresses all output.
     """
     if not force_venv_activation and is_venv():
         # pylint was invoked from within a venv.  Nothing to do.
