@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Do not include documentation files in pure library distribution
   ([#13](https://github.com/jgosmann/pylint-venv/pull/13)).
-- Clarify that the hook has to be configured in the `[MASTER]` section
+- Clarify that the hook has to be configured in the `[MAIN]` section
   ([#14](https://github.com/jgosmann/pylint-venv/pull/14))
 
 

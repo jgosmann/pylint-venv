@@ -17,7 +17,7 @@ Add the following to your ``~/.pylintrc``:
 
 .. code:: ini
 
-    [MASTER]
+    [MAIN]
     init-hook=
         try: import pylint_venv
         except ImportError: pass
@@ -114,7 +114,7 @@ Python version:
 
 .. code:: ini
 
-    [MASTER]
+    [MAIN]
     init-hook=
         import sys
         sys.path.append("/usr/local/lib/python3.8/site-packages")
