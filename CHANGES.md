@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - unreleased
+
+### Fixed
+
+- Do not include documentation files in pure library distribution
+  ([#13](https://github.com/jgosmann/pylint-venv/pull/13)).
+- Clarify that the hook has to be configured in the `[MASTER]` section
+  ([#14](https://github.com/jgosmann/pylint-venv/pull/14))
+
+
 ## [2.3.0] - 2022-06-24
 
 ### Added
@@ -58,8 +68,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of inithook for pylint to activate virtual env.
 
-[unreleased]: https://github.com/jgosmann/pylint-venv/compare/v2.3.0...HEAD
-[2.3.0]: https://github.com/jgosmann/pylint-venv/compare/v2.3.0...v2.3.0
+[unreleased]: https://github.com/jgosmann/pylint-venv/compare/v2.3.1...HEAD
+[2.3.1]: https://github.com/jgosmann/pylint-venv/compare/v2.3.0...v2.3.1
+[2.3.0]: https://github.com/jgosmann/pylint-venv/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/jgosmann/pylint-venv/compare/v2.1.0...v2.2.0
 [2.1.1]: https://github.com/jgosmann/pylint-venv/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/jgosmann/pylint-venv/compare/v2.0.0...v2.1.0
