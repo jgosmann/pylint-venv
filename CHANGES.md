@@ -7,16 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.0.0] - unreleased
 
+### Changed
+
+- Require that the `force_venv_activation` argument to `inithook` is passed
+  as keyword argument.
+  
+### Removed
+
+- Remove (official) support for Python 3.6.
+
 ### Fixed
 
 - Do not include documentation files in pure library distribution
   ([#13](https://github.com/jgosmann/pylint-venv/pull/13)).
 - Clarify that the hook has to be configured in the `[MAIN]` section
   ([#14](https://github.com/jgosmann/pylint-venv/pull/14))
-  
-### Removed
-
-- Remove (official) support for Python 3.6.
 
 
 ## [2.3.0] - 2022-06-24
