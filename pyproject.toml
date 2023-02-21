@@ -1,37 +1,38 @@
 [tool.poetry]
-name = "pylint-venv"
-version = "2.3.0"
-description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
-readme = "README.rst"
 authors = ["Jan Gosmann <jan@hyper-world.de>", "Federico Jaramillo <federicojaramillom@gmail.com>"]
-maintainers = ["Jan Gosmann <jan@hyper-world.de>"]
-homepage = "https://github.com/jgosmann/pylint-venv/"
-repository = "https://github.com/jgosmann/pylint-venv/"
-license = "MIT"
-keywords = ["pylint", "virtualenv", "venv"]
 classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Environment :: Plugins',
-    'Intended Audience :: Developers',
-    'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: Implementation :: CPython',
-    'Programming Language :: Python :: Implementation :: PyPy',
-    'Topic :: Software Development',
+  'Development Status :: 5 - Production/Stable',
+  'Environment :: Plugins',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: Implementation :: CPython',
+  'Programming Language :: Python :: Implementation :: PyPy',
+  'Topic :: Software Development',
 ]
+description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
+homepage = "https://github.com/jgosmann/pylint-venv/"
 include = ["pylint_venv.py"]
+keywords = ["pylint", "virtualenv", "venv"]
+license = "MIT"
+maintainers = ["Jan Gosmann <jan@hyper-world.de>"]
+name = "pylint-venv"
+readme = "README.rst"
+repository = "https://github.com/jgosmann/pylint-venv/"
+version = "3.0.0"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7.2"
 
 [tool.poetry.dev-dependencies]
+pylint = '^2.14.0'
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
