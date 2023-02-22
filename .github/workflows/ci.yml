@@ -1,0 +1,94 @@
+name: CI and release pipeline
+
+on:
+  pull_request:
+  push:
+    branches: ["main", "develop"]
+    tags: ["*"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        pylint-version: ["~=2.14.0"]
+        include:
+          - python-version: "3.11"
+            pylint-version: "~=2.16.2"
+          - python-version: "3.11"
+            pylint-version: ""
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.3.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/cache@v3.0.11
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip
+      - uses: actions/cache@v3.0.11
+        with:
+          path: .venv
+          key: ${{ runner.os }}-py${{ matrix.python-version }}-pylint${{ matrix.pylint-version }}-venv-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-py${{ matrix.python-version }}-pylint${{ matrix.pylint-version }}-venv-
+            ${{ runner.os }}-py${{ matrix.python-version }}-pylint
+      
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+          
+      - name: Install pylint ${{ matrix.pylint-version }}
+        run: poetry run pip install pylint${{ matrix.pylint-version }}
+          
+      - name: Run test
+        run: poetry run test/test.sh
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.3.0
+        with:
+          python-version: '3.11'
+
+      - uses: actions/cache@v3.0.11
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Publish to PyPI
+        run: poetry publish --build
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Set version
+        id: version
+        run: echo "version=${GITHUB_REF#refs/*/v}" >> $GITHUB_OUTPUT
+
+      - name: Extract changelog
+        id: changelog
+        run: sed -E -n '/^## \[${{ steps.version.outputs.version }}\]/,/^## \[[0-9\.]+\]/{/^\[[0-9\.]+\]/!p;}' CHANGES.md | sed '1d;$d' > release-body.md
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release-body.md
+          tag_name: v${{ steps.version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
