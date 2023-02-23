@@ -18,14 +18,14 @@ classifiers = [
 ]
 description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
 homepage = "https://github.com/jgosmann/pylint-venv/"
-include = ["pylint_venv.py"]
+include = ["pylint_venv.py", {path = "CHANGES.md", format = "sdist"}]
 keywords = ["pylint", "virtualenv", "venv"]
 license = "MIT"
 maintainers = ["Jan Gosmann <jan@hyper-world.de>"]
 name = "pylint-venv"
 readme = "README.rst"
 repository = "https://github.com/jgosmann/pylint-venv/"
-version = "3.0.0"
+version = "3.0.1"
 
 [tool.poetry.dependencies]
 python = "^3.7.2"
