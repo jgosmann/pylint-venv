@@ -83,11 +83,11 @@ jobs:
 
       - name: Extract changelog
         id: changelog
-        run: sed -E -n '/^## \[${{ steps.version.outputs.version }}\]/,/^## \[[0-9\.]+\]/{/^\[[0-9\.]+\]/!p;}' CHANGES.md | sed '1d;$d' > /tmp/release-body.md
+        run: sed -E -n '/^## \[${{ steps.version.outputs.version }}\]/,/^## \[[0-9\.]+\]/{/^\[[0-9\.]+\]/!p;}' CHANGES.md | sed '1d;$d' > release-body-raw.md
           
       - uses: docker://pandoc/core:2.10
         with:
-          args: --wrap none --from markdown --to gfm+hard_line_breaks --output release-body.md /tmp/release-body.md
+          args: --wrap none --from markdown --to gfm+hard_line_breaks --output release-body.md release-body-raw.md
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
