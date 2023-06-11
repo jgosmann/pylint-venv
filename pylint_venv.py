@@ -86,6 +86,10 @@ def activate_venv(venv):
     else:
         lib_dir = os.path.join(venv, "lib")
         python_dirs = [d for d in os.listdir(lib_dir) if re.match(r"python\d+.\d+", d)]
+
+        # Resolve symlinks and remove repeated directories
+        python_dirs = set([os.path.realpath(os.path.join(lib_dir, d)) for d in python_dirs])
+
         if len(python_dirs) == 0:
             raise IncompatibleVenvError(
                 f"The virtual environment {venv!r} is missing a lib/pythonX.Y directory."
@@ -94,7 +98,7 @@ def activate_venv(venv):
             raise IncompatibleVenvError(
                 f"The virtual environment {venv!r} has multiple lib/pythonX.Y directories."
             )
-        site_packages = os.path.join(lib_dir, python_dirs[0], "site-packages")
+        site_packages = os.path.join(list(python_dirs)[0], "site-packages")
 
     prev = set(sys.path)
     site.addsitedir(site_packages)
