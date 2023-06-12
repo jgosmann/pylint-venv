@@ -92,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of inithook for pylint to activate virtual env.
 
-[unreleased]: https://github.com/jgosmann/pylint-venv/compare/v3.0.1...HEAD
+[unreleased]: https://github.com/jgosmann/pylint-venv/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/jgosmann/pylint-venv/compare/v3.0.0...v3.0.2
 [3.0.1]: https://github.com/jgosmann/pylint-venv/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/jgosmann/pylint-venv/compare/v2.3.0...v3.0.0
 [2.3.0]: https://github.com/jgosmann/pylint-venv/compare/v2.2.0...v2.3.0
