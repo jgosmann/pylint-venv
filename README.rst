@@ -12,8 +12,29 @@ Installation
 .. code:: bash
 
     pip install pylint-venv
+    
+Add the hook to your Pylint configuration. See the section below corresponding
+to the type of configuration file you use.
 
-Add the following to your ``~/.pylintrc``:
+Configure with ``pyproject.toml``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add the following to your ``pyproject.toml``:
+
+.. code:: toml
+   
+    [tool.pylint.MAIN]
+    init-hook = """
+    try: import pylint_venv
+    except ImportError: pass
+    else: pylint_venv.inithook()
+    """
+
+
+Configure with ``.pylintrc``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add the following to your ``.pylintrc``:
 
 .. code:: ini
 
@@ -22,6 +43,13 @@ Add the following to your ``~/.pylintrc``:
         try: import pylint_venv
         except ImportError: pass
         else: pylint_venv.inithook()
+        
+If you add this to your ``~/.pylintrc`` in your home directory, it will be
+applied to all projects by default.
+
+        
+Usage
+-----
 
 The hook will then be used automatically if
 

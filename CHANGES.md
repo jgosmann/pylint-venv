@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Official support for Pylint 3.
 - Official support for Python 3.12.
+- Documentation for configuration within `pyproject.toml`
+  ([#17](https://github.com/jgosmann/pylint-venv/issues/17),
+  [#19](https://github.com/jgosmann/pylint-venv/pull/19)).
 
 
 ## [3.0.2] - 2023-06-12
