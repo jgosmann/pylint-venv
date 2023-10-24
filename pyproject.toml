@@ -32,7 +32,7 @@ version = "3.0.3"
 python = "^3.7.2"
 
 [tool.poetry.dev-dependencies]
-pylint = '^2.14.0'
+pylint = '>=2.14.0'
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
