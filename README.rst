@@ -1,3 +1,17 @@
+.. image:: https://github.com/jgosmann/pylint-venv/actions/workflows/ci.yml/badge.svg
+  :target: https://github.com/jgosmann/pylint-venv/actions/workflows/ci.yml
+  :alt: CI and release pipeline
+.. image:: https://img.shields.io/pypi/v/pylint-venv
+  :target: https://pypi.org/project/pylint-venv/
+  :alt: PyPI
+.. image:: https://img.shields.io/pypi/pyversions/pylint-venv
+  :target: https://pypi.org/project/pylint-venv/
+  :alt: PyPI - Python Version
+.. image:: https://img.shields.io/pypi/l/pylint-venv
+  :target: https://pypi.org/project/pylint-venv/
+  :alt: PyPI - License
+
+
 pylint-venv
 ===========
 
