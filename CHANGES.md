@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Handle symlinks pointing to the main `python3.x` directory in a venv.
-  In particular, this fixes an issue with Conda and Python 3.10 (#16).
+  In particular, this fixes an issue with Conda and Python 3.10
+  ([#16](https://github.com/jgosmann/pylint-venv/pull/16)).
 
 
 ## [3.0.1] - 2023-02-23
