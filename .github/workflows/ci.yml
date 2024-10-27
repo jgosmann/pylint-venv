@@ -23,18 +23,18 @@ jobs:
           - python-version: "3.13"
             pylint-version: ""
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4.3.0
+        uses: actions/setup-python@v5.3.0
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: actions/cache@v3.0.11
+      - uses: actions/cache@v4.1.2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip
-      - uses: actions/cache@v3.0.11
+      - uses: actions/cache@v4.1.2
         with:
           path: .venv
           key: ${{ runner.os }}-py${{ matrix.python-version }}-pylint${{ matrix.pylint-version }}-venv-${{ hashFiles('pyproject.toml') }}
@@ -61,14 +61,14 @@ jobs:
     needs: [test]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4.3.0
         with:
           python-version: '3.13'
 
-      - uses: actions/cache@v3.0.11
+      - uses: actions/cache@v4.1.2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip
